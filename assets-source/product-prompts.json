@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen",
+  "mode": "generate",
+  "generatedAt": "2026-10-09",
+  "finalImageCount": 3,
+  "variantsOrRetries": 0,
+  "assets": [
+    {
+      "file": "kya-scene-hai-ivory-tee.png",
+      "prompt": "Use case: product-mockup\nAsset type: premium product catalog image for the Indian meme apparel shop MEME MANDI\nStyle/medium: photorealistic premium studio catalog photography; believable cotton fabric and screen-printed design\nScene/backdrop: pale cool gray seamless studio background\nComposition/framing: vertical 3:4 portrait image, single garment centered, front facing perfectly straight-on, naturally hanging with no visible hanger, wide relaxed silhouette; garment fills most of the frame, with the complete garment and its sleeves visible\nLighting/mood: soft studio lighting, gentle natural shadows, crisp product detail\nConstraints: make all garment print text perfectly legible, spelled exactly as given; no person, no hands, no brands, no movie characters, no package, no extra objects, no UI, no watermark\nSubject: oversized washed ivory T-shirt with sleeves spread wide naturally, soft heavyweight cotton with subtle authentic creases\nText (verbatim): \"KYA SCENE HAI?\"\nPrint design: bold original black chest typography in a compact expressive arrangement, with a small playful original black line doodle of a chai cup underneath; only these design elements"
+    },
+    {
+      "file": "kal-dekhenge-black-tee.png",
+      "prompt": "Use case: product-mockup\nAsset type: premium product catalog image for the Indian meme apparel shop MEME MANDI\nStyle/medium: photorealistic premium studio catalog photography; believable cotton fabric and screen-printed design\nScene/backdrop: pale cool gray seamless studio background\nComposition/framing: vertical 3:4 portrait image, single garment centered, front facing perfectly straight-on, naturally hanging with no visible hanger, wide relaxed silhouette; garment fills most of the frame, with the complete garment and its sleeves visible\nLighting/mood: soft studio lighting, gentle natural shadows, crisp product detail\nConstraints: make all garment print text perfectly legible, spelled exactly as given; no person, no hands, no brands, no movie characters, no package, no extra objects, no UI, no watermark\nSubject: oversized washed black T-shirt with sleeves spread wide naturally, soft heavyweight cotton with subtle authentic creases\nText (verbatim): \"KAL DEKHENGE\" and tiny italic subline \"professional procrastinator\"\nPrint design: bold cream typography on the chest, with the tiny italic subline underneath; only these design elements"
+    },
+    {
+      "file": "overthinking-indigo-hoodie.png",
+      "prompt": "Use case: product-mockup\nAsset type: premium product catalog image for the Indian meme apparel shop MEME MANDI\nStyle/medium: photorealistic premium studio catalog photography; believable cotton fabric and screen-printed design\nScene/backdrop: pale cool gray seamless studio background\nComposition/framing: vertical 3:4 portrait image, single garment centered, front facing perfectly straight-on, naturally hanging with no visible hanger, wide relaxed silhouette; garment fills most of the frame, with the complete garment and its sleeves visible\nLighting/mood: soft studio lighting, gentle natural shadows, crisp product detail\nConstraints: make all garment print text perfectly legible, spelled exactly as given; no person, no hands, no brands, no movie characters, no package, no extra objects, no UI, no watermark\nSubject: rich indigo oversized hoodie with a spacious hood, relaxed full sleeves and ribbed cuffs, soft heavyweight cotton with subtle authentic creases\nText (verbatim): \"OVERTHINKING DEPARTMENT\"\nPrint design: bold cream chest typography in a clear balanced two-line arrangement, with a small original hand-drawn cream swirl underneath; only these design elements"
+    }
+  ]
+}

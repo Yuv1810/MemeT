@@ -1,0 +1,166 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+enum TokenPurpose {
+  VERIFY_EMAIL
+  RESET_PASSWORD
+}
+enum OrderStatus {
+  PLACED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+enum FulfillmentStatus {
+  NOT_SUBMITTED
+  SUBMITTING
+  SUBMITTED
+  REJECTED
+  REVIEW_REQUIRED
+}
+model User {
+  id String @id @default(cuid())
+  email String @unique @db.VarChar(254)
+  name String @db.VarChar(60)
+  passwordHash String
+  emailVerifiedAt DateTime?
+  role Role @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  sessions Session[]
+  tokens EmailToken[]
+  orders Order[]
+  bag Bag?
+}
+model Session {
+  id String @id @default(cuid())
+  tokenHash String @unique
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  @@index([userId])
+  @@index([expiresAt])
+}
+model EmailToken {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  purpose TokenPurpose
+  codeHash String
+  attempts Int @default(0)
+  expiresAt DateTime
+  sentAt DateTime @default(now())
+  @@unique([userId, purpose])
+  @@index([expiresAt])
+}
+model RateLimit {
+  key String @id
+  count Int @default(1)
+  expiresAt DateTime
+  @@index([expiresAt])
+}
+model Product {
+  id String @id @default(cuid())
+  slug String @unique
+  name String @db.VarChar(100)
+  description String
+  category String @db.VarChar(30)
+  fit String @default("Oversized")
+  fabric String @default("100% cotton")
+  image String
+  tag String?
+  active Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  variants ProductVariant[]
+  @@index([active, category])
+}
+model ProductVariant {
+  id String @id @default(cuid())
+  productId String
+  product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+  sku String @unique
+  qikinkSku String?
+  color String @db.VarChar(30)
+  colorHex String @db.VarChar(7)
+  size String @db.VarChar(8)
+  pricePaise Int
+  compareAtPaise Int?
+  active Boolean @default(true)
+  searchFromMyProducts Boolean @default(false)
+  designs Json @default("[]")
+  bagItems BagItem[]
+  orderItems OrderItem[]
+  @@unique([productId, color, size])
+  @@index([productId, active])
+}
+model Bag {
+  id String @id @default(cuid())
+  tokenHash String @unique
+  userId String? @unique
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  expiresAt DateTime
+  items BagItem[]
+  @@index([expiresAt])
+}
+model BagItem {
+  id String @id @default(cuid())
+  bagId String
+  bag Bag @relation(fields: [bagId], references: [id], onDelete: Cascade)
+  variantId String
+  variant ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
+  quantity Int
+  @@unique([bagId, variantId])
+  @@index([variantId])
+}
+model Order {
+  id String @id @default(cuid())
+  number String @unique @db.VarChar(15)
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  checkoutKey String @unique
+  status OrderStatus @default(PLACED)
+  fulfillmentStatus FulfillmentStatus @default(NOT_SUBMITTED)
+  qikinkOrderId String?
+  fulfillmentMessage String?
+  shippingAddress Json
+  subtotalPaise Int
+  shippingPaise Int
+  totalPaise Int
+  paymentMethod String @default("cash_on_delivery")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  items OrderItem[]
+  @@index([userId, createdAt])
+  @@index([fulfillmentStatus, createdAt])
+}
+model OrderItem {
+  id String @id @default(cuid())
+  orderId String
+  order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variantId String
+  variant ProductVariant @relation(fields: [variantId], references: [id], onDelete: Restrict)
+  name String
+  image String
+  sku String
+  qikinkSku String?
+  color String
+  size String
+  pricePaise Int
+  quantity Int
+  searchFromMyProducts Boolean
+  designs Json
+  @@index([orderId])
+  @@index([variantId])
+}
