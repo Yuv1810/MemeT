@@ -12,7 +12,21 @@ export function enforceOrigin(request: Request) {
   const configured = process.env.APP_URL;
   if (!configured)
     throw new ApiError(503, "The store is being configured. Please try again later.");
-  if (request.headers.get("origin") !== new URL(configured).origin)
+  const configuredOrigin = new URL(configured).origin;
+  const requestOrigin = request.headers.get("origin");
+  const isLoopback = (origin: string | null) => {
+    if (!origin) return false;
+    try {
+      const { hostname } = new URL(origin);
+      return hostname === "localhost" || hostname === "127.0.0.1";
+    } catch {
+      return false;
+    }
+  };
+  const match =
+    requestOrigin === configuredOrigin ||
+    (isLoopback(configuredOrigin) && isLoopback(requestOrigin));
+  if (!match)
     throw new ApiError(403, "Please open this form from the store website.");
   if (!request.headers.get("content-type")?.includes("application/json"))
     throw new ApiError(415, "Please send a JSON request.");

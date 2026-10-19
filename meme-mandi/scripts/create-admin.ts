@@ -3,11 +3,11 @@ import { PrismaClient } from "@prisma/client";
 import { hashPassword } from "../src/lib/security";
 const db = new PrismaClient();
 async function main() {
-  const email = process.env.ADMIN_EMAIL?.trim().toLowerCase(),
+  const email = (process.env.ADMIN_EMAIL || process.env.ADMIN_EMAILS?.split(",")[0])?.trim().toLowerCase(),
     password = process.env.ADMIN_PASSWORD;
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || !password || password.length < 14)
     throw new Error(
-      "Set ADMIN_EMAIL and a unique ADMIN_PASSWORD of at least 14 characters, then run this command.",
+      "Set ADMIN_EMAIL (or ADMIN_EMAILS) and a unique ADMIN_PASSWORD of at least 14 characters, then run this command.",
     );
   if (await db.user.findUnique({ where: { email } }))
     throw new Error(
