@@ -138,7 +138,7 @@ export function Admin() {
     <>
       <div className="admin-heading">
         <div>
-          <span className="eyebrow">MemT / STORE ADMIN</span>
+          <span className="eyebrow">memeT / STORE ADMIN</span>
           <h1 className="page-title">BEHIND THE MEMES.</h1>
           <p className="page-intro">Your catalog, variants, and fulfillment in one place.</p>
         </div>

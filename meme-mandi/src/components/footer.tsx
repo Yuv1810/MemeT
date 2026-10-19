@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="footer-top">
         <div>
-          <Link href="/" className="footer-logo" aria-label="MemT home">
+          <Link href="/" className="footer-logo" aria-label="memeT home">
             <BrandLogo />
           </Link>
           <p>Internet humour. Offline wardrobe.</p>
@@ -18,7 +18,7 @@ export function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} MemT. Made for the group chat.</span>
+        <span>© {new Date().getFullYear()} memeT. Made for the group chat.</span>
         <span>INDIAN AT HEART. INTERNET BY HABIT.</span>
       </div>
     </footer>

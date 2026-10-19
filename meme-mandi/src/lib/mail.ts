@@ -6,8 +6,8 @@ export async function sendCode(
   purpose: "VERIFY_EMAIL" | "RESET_PASSWORD",
 ) {
   const subject =
-    purpose === "VERIFY_EMAIL" ? "Your MemT verification code" : "Reset your MemT password";
-  const text = `${subject}\n\nYour code is ${code}. It expires in 10 minutes. Never share it.\n\nIf you didn't request this, you can ignore this email.\nMemT`;
+    purpose === "VERIFY_EMAIL" ? "Your memeT verification code" : "Reset your memeT password";
+  const text = `${subject}\n\nYour code is ${code}. It expires in 10 minutes. Never share it.\n\nIf you didn't request this, you can ignore this email.\nmemeT`;
   const from = process.env.MAIL_FROM;
   const provider = process.env.MAIL_PROVIDER;
   if (provider === "local" && process.env.NODE_ENV !== "production") {

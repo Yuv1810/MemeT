@@ -215,7 +215,7 @@ export function AuthForm({ initialMode }: { initialMode: Mode }) {
         )}
         {mode === "login" ? (
           <p className="auth-switch">
-            New to MemT? <Link href="/register">Create an account</Link>
+            New to memeT? <Link href="/register">Create an account</Link>
           </p>
         ) : (
           <p className="auth-switch">

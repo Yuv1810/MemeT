@@ -11,7 +11,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { BagDrawer } from "@/components/bag-drawer";
 export const metadata: Metadata = {
-  title: { default: "MemT — Wear the group chat", template: "%s | MemT" },
+  title: { default: "memeT — Wear the group chat", template: "%s | memeT" },
   description:
     "Original Indian meme T-shirts and hoodies. Oversized fits, everyday comfort, and a little internet energy.",
 };

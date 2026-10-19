@@ -25,7 +25,7 @@ export function Header() {
         <span className="announcement-extra">FREE SHIPPING ON ORDERS ₹1,499+</span>
       </div>
       <header className="site-header">
-        <Link className="wordmark" href="/" aria-label="MemT home">
+        <Link className="wordmark" href="/" aria-label="memeT home">
           <BrandLogo />
         </Link>
         <nav className={menu ? "main-nav open" : "main-nav"} aria-label="Main navigation">
